@@ -1,0 +1,22 @@
+.container-fluid {
+  max-width: 1520px;
+  width: 100%;
+}
+
+.nav-link:hover, .navbar-nav .active:hover {
+  padding: 0px;
+  background: #34b5b8  ;
+  color: white !important;
+}
+.navbar-nav .active {
+   
+  color: white !important;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  color: #fff;
+  margin: 0 15px;
+  border: solid 2px #34b5b8 ;
+}
+
