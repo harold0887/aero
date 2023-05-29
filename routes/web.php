@@ -19,7 +19,7 @@ Route::get('/foo', function () {
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('/', [HomeController::class, 'index'])->name('home');
-	Route::resource('dashboard/post', postController::class);
+	Route::resource('dashboard/post', \App\Http\Controllers\PostController::class);
 	Route::get('profile', [ProfileController::class, 'profile'])->name('profile.edit');
 	Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::put('password', [ProfileController::class, 'password'])->name('profile.password');
