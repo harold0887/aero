@@ -31,16 +31,22 @@ $(function () {
   // }
 
   showModalLoad();
-  copy();
-});
-var elemento = document.querySelector('.contenido-texto');
-function copy() {
-  $("#btn-copy").on("click", function () {
-    var imputOculto = document.createElement('input');
-    imputOculto.setAttribute('value', elemento.innerText);
-    imputOculto.select();
-    document.execCommand('copy');
+  var elemento = document.querySelector('.contenido-texto');
+  document.querySelector('#btn-copy').addEventListener('click', function () {
+    document.querySelector('.mensaje-copy').classList.add('show');
+    copyToClipBoard(elemento);
+    setTimeout(function () {
+      document.querySelector('.mensaje-copy').classList.remove('show');
+    }, 1300);
   });
+});
+function copyToClipBoard(elemento) {
+  var inputOculto = document.createElement('input');
+  inputOculto.setAttribute('value', elemento.innerText);
+  document.body.appendChild(inputOculto);
+  inputOculto.select();
+  document.execCommand('copy');
+  document.body.removeChild(inputOculto);
 }
 
 //activar modal al enviar, se cierra al retornar controlador

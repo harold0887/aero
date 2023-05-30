@@ -26,29 +26,40 @@ $(function () {
   // }
 
   showModalLoad()
-  copy()
+  const elemento = document.querySelector('.contenido-texto');
+
+  document.querySelector('#btn-copy').addEventListener('click',()=>{
+  
+      document.querySelector('.mensaje-copy').classList.add('show');
+      copyToClipBoard(elemento);
+  
+      setTimeout(()=>{
+          document.querySelector('.mensaje-copy').classList.remove('show');
+      },1300);
+  })
 
 
 
 });  
 
-const elemento= document.querySelector('.contenido-texto')
 
-function copy(){
 
-  $( "#btn-copy" ).on( "click", function() {
-   
-    const imputOculto = document.createElement('input');
-    imputOculto.setAttribute('value', elemento.innerText);
 
-    imputOculto.select();
+
+function copyToClipBoard(elemento){
+    const inputOculto = document.createElement('input');
+
+    inputOculto.setAttribute('value', elemento.innerText);
+
+    document.body.appendChild(inputOculto);
+
+    inputOculto.select();
 
     document.execCommand('copy');
 
-    
+    document.body.removeChild(inputOculto);
 
-  } );
-
+   
 }
 
 

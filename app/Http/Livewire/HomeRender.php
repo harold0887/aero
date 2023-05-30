@@ -55,4 +55,9 @@ class HomeRender extends Component
         $this->message = Message::findOrFail($this->messageSelect);
         
     }
+
+    public function clear(){
+        $this->reset(['message','messageSelect','genero','lastName']);
+        $this->salidaSelect=1;
+    }
 }

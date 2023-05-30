@@ -48,8 +48,12 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" wire:click="submit" wire:loading.remove wire:target="submit">
-        Crear plantilla</button>
+    <button type="submit" class="btn btn-primary" wire:click="submit" wire:loading.attr="disabled" wire:target="submit">
+        Crear plantilla
+    </button>
+    <button id="btn-copy" class="btn btn-warning" wire:click="clear" wire:loading.attr="disabled" wire:target="clear">
+        Borrar plantilla
+    </button>
 
 
 
@@ -60,8 +64,9 @@
 
     <div class="row">
 
-        <div class="col-8 mt-5 border rounded py-2 contenido-texto">
-            @if(isset($message) && $message !=null)
+
+        @if(isset($message) && $message !=null)
+        <div class="col-8 mt-5 border rounded py-2 bg-white ">
             @if($genero=='01')
             <p>Estimado Sr. {{$lastName}},</p>
             @elseif($genero=='02')
@@ -69,32 +74,30 @@
             @endif
 
 
-
+            <br>
 
 
             <p>{!!$message->message!!}</p>
 
+            <br>
 
             @if($genero=='01')
             <p>Estimado Sr. {{$lastName}}, {{$salida->salida}} </p>
             @elseif($genero=='02')
             <p>Estimada Srta. {{$lastName}}, {{$salida->salida}} </p>
             @endif
-
-            @endif
+            <br>
+            Cordialmente,
         </div>
 
+        @endif
 
-      
 
-        <div class="border border-danger">
-            <button id="btn-copy" class="btn btn-info" wire:ignore>
-                Copiar al portapapeles
-                <i class="fa-solid fa-copy"></i>
-            </button>
 
-        </div>
-      
+
+
+
+
 
 
 
