@@ -82,9 +82,9 @@
             <br>
 
             @if($genero=='01')
-            <p>Estimado Sr. {{$lastName}}, {{$salida->salida}} </p>
+            <p>Sr. {{$lastName}}, {{$salida->salida}} </p>
             @elseif($genero=='02')
-            <p>Estimada Srta. {{$lastName}}, {{$salida->salida}} </p>
+            <p>Srta. {{$lastName}}, {{$salida->salida}} </p>
             @endif
             <br>
             Cordialmente,
