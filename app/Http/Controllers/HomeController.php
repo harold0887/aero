@@ -12,6 +12,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function internal()
+    {
+        return view('internal');
+    }
+
     public function dashboard()
     {
         return view('dashboard');

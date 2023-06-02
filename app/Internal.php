@@ -5,14 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Internal extends Model
 {
     use HasFactory;
+    protected $table = 'internal';
     protected $guarded = [];
-
-     //relacion con salida, retorna la salida al que pertenece
-  public function salida()
-  {
-    return $this->belongsTo(Salida::class);
-  }
 }

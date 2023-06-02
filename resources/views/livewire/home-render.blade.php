@@ -34,7 +34,7 @@
             <small class=" text-danger"> {{ $message }} </small>
             @enderror
         </div>
-        <div class="form-group col-2">
+        <!-- <div class="form-group col-2">
             <label>Despedida</label>
             <select class="form-control" wire:model="salidaSelect">
                 <option value="" disabled selected>Selecciona...</option>
@@ -45,7 +45,7 @@
             @error('salidaSelect')
             <small class=" text-danger"> {{ $message }} </small>
             @enderror
-        </div>
+        </div> -->
     </div>
 
     <button type="submit" class="btn btn-primary" wire:click="submit" wire:loading.attr="disabled" wire:target="submit">
@@ -82,9 +82,9 @@
             <br>
 
             @if($genero=='01')
-            <p>Sr. {{$lastName}}, {{$salida->salida}} </p>
+            <p>Sr. {{$lastName}}, {{$message->salida->salida}} </p>
             @elseif($genero=='02')
-            <p>Srta. {{$lastName}}, {{$salida->salida}} </p>
+            <p>Srta. {{$lastName}}, {{$message->salida->salida}} </p>
             @endif
             <br>
             Cordialmente,

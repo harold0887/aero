@@ -4,7 +4,7 @@
 'elementActive' => 'dashboard',
 'title'=>'Plantillas',
 'navbarClass'=>'navbar-transparent',
-'activePage'=>'plantillas',
+'activePage'=>'internal',
 ])
 @section('content')
 @include('includes.spinner')
@@ -18,11 +18,11 @@
                 <div class="card">
                     <div class="card-header card-header-primary card-header-icon">
 
-                        <h4 class="card-title">Editar Plantilla - {{$plantilla->title}} </h4>
+                        <h4 class="card-title">Editar Plantilla - {{$plantilla->title}}</h4>
                     </div>
                     <div class="card-body ">
-                        <form id="create-post-admin" action="{{ route('post.update', $plantilla->id)}}" enctype="multipart/form-data" method="POST">
-                            @csrf @method('PATCH')
+                        <form id="create-post-admin" action="{{ route('internal.update', $plantilla->id) }}" enctype="multipart/form-data" method="POST">
+                        @csrf @method('PATCH')
                             <div class="form-row ">
                                 <div class="form-group col-12 col-md-4">
                                     <label class="bmd-label-floating">Titulo</label>
@@ -31,27 +31,34 @@
                                     <small class="text-danger"> {{ $message }} </small>
                                     @enderror
                                 </div>
-                                <div class="form-group col-12 col-md-4">
-                                    <label class="bmd-label-floating">Mensaje de salida</label>
-                                    <select class="form-control" name="salida" value="{{ old('salida') }}">
-                                        <option value="" disabled selected>Selecciona...</option>
-                                        @foreach($salidas as $item)
-                                        <option value=" {{ $item->id }}" {{ $plantilla->salida->id == $item->id ? 'selected' : '' }} {{ old('salida') == $item->id ? 'selected' : '' }}>{{$item->salida}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('salida')
-                                    <small class=" text-danger"> {{ $message }} </small>
+                                <div class="form-group col-12 col-md-2">
+                                    <label class="bmd-label-floating">Name</label>
+                                    <input type="text" class="form-control" name="nombre" value="{{ old('nombre') ?: $plantilla->name }}">
+                                    @error('nombre')
+                                    <small class="text-danger"> {{ $message }} </small>
                                     @enderror
                                 </div>
-
-
-
+                                <div class="form-group col-12 col-md-2">
+                                    <label class="bmd-label-floating">Email (opcional)</label>
+                                    <input type="text" class="form-control" name="email" value="{{ old('email') ?: $plantilla->email }}">
+                                    @error('email')
+                                    <small class="text-danger"> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-12 col-md-4">
+                                    <label class="bmd-label-floating">Notas (opcional)</label>
+                                    <input type="text" class="form-control" name="nota" value="{{ old('nota') ?: $plantilla->nota }}">
+                                    @error('nota')
+                                    <small class="text-danger"> {{ $message }} </small>
+                                    @enderror
+                                </div>
+                               
                             </div>
 
 
                             <div class="form-row   mt-lg-5">
                                 <div class="form-group col-md-12">
-                                    <label for="information">Información</label>
+                                    <label for="information">Mensaje</label>
                                     <textarea class="ckeditor form-control {{ $errors->has('information') ? ' is-invalid border-danger' : '' }}" name="information" rows="5" value="">{{ old('information') ?: $plantilla->message }}</textarea>
                                     @error('information')
                                     <small class="text-danger"> {{ $message }} </small>
@@ -59,13 +66,6 @@
                                 </div>
 
                             </div>
-
-
-
-
-
-
-
 
 
 

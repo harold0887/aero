@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Message;
+
+use App\User;
+use App\Internal;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
-class IndexPosts extends Component
+class IndexInternal extends Component
 {
     public $search = '';
     public $sortDirection = 'asc';
@@ -15,14 +18,13 @@ class IndexPosts extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        $posts = Message::where(function ($query) {
+        $posts = Internal::where(function ($query) {
             $query->where('title', 'like', '%' . $this->search . '%');
         })->orderBy($this->sortField, $this->sortDirection)
             ->paginate(50);
 
          
-
-        return view('livewire.admin.index-posts', compact('posts'));
+        return view('livewire.admin.index-internal',compact('posts'));
     }
 
     //sort

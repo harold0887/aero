@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Salida;
-use App\Message;
+use App\Internal;
 use Livewire\Component;
 
-class HomeRender extends Component
+class InternalRender extends Component
 {
     public $message, $entrada, $messageSelect = '', $salida, $salidaSelect, $genero = '', $lastName;
     protected $rules = [
         'messageSelect' => 'required',
-        'genero' => 'required',
-        'lastName' => 'required',
-        
+
+
+
 
         // 'socialNetwork' => 'required|string',
         // 'fop' => 'required',
@@ -22,9 +21,9 @@ class HomeRender extends Component
     ];
     protected $messages = [
         'messageSelect.required' => 'Selecciona una opcion valida.',
-        'genero.required' => 'Selecciona una opcion valida.',
-        'lastName.required' => 'El campo apellido es obligatorio.',
-    
+
+
+     
 
 
 
@@ -33,26 +32,19 @@ class HomeRender extends Component
     public function mount(){
         $this->salidaSelect=1;
     }
-
-
-
     public function render()
     {
-        $mensajes = Message::orderBy('title', 'asc')->get();
-        $salidas = Salida::orderBy('salida', 'asc')->get();
-        $this->salida = Salida::findOrFail($this->salidaSelect);
-
-
-
-        return view('livewire.home-render', compact('mensajes','salidas'));
+        $mensajes = Internal::orderBy('title', 'asc')->get();
+    
+       
+        return view('livewire.internal-render', compact('mensajes'));
     }
-
     public function submit()
     {
 
 
         $this->validate();
-        $this->message = Message::findOrFail($this->messageSelect);
+        $this->message = Internal::findOrFail($this->messageSelect);
         
     }
 

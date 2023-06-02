@@ -12,7 +12,8 @@
     </title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+     <!--     Fonts and icons google     -->
+     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
    
     <!-- CSS Files -->
@@ -28,7 +29,7 @@
 <body class="{{ $class }}">
 
 
-    @if (Route::is('dashboard','dashboard.*','post.*'))
+    @if (Route::is('dashboard','dashboard.*','post.*','internal.*'))
     @include('layouts.page_templates.admin')
 
     @elseif(Route::is('login','register','password.email','password.request','password.reset'))
@@ -93,7 +94,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- sweetalert2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
       <!--  Ckeditor. -->
       <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>

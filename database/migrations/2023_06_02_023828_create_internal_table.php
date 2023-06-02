@@ -14,9 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entradas', function (Blueprint $table) {
+        Schema::create('internal', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('entrada');
+            $table->string('title');
+            $table->string('name');
+            $table->mediumText('message');
+            $table->string('email');
+            $table->mediumText('nota')->nullable();
             $table->unsignedBigInteger('user_id')->on('users')->constrained()->restrictOnDelete();
             $table->timestamps();
         });
@@ -30,8 +34,8 @@ return new class extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('entradas');
+        Schema::dropIfExists('internal');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-       
+      
     }
 };

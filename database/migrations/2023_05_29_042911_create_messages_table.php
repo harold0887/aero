@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -17,6 +18,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->mediumText('message');
+            $table->unsignedBigInteger('user_id')->on('users')->constrained()->restrictOnDelete();
+            $table->foreignId('salida_id')->on('salidas')->constrained()->restrictOnDelete()->nullable();
+            
             $table->timestamps();
         });
     }
@@ -28,6 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('messages');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+      
     }
 };

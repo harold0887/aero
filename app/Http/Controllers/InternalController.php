@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Salida;
-use App\Message;
+use App\Internal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
-class PostController extends Controller
+class InternalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('plantillas.index');
+        return view('internal.index');
     }
 
     /**
@@ -27,8 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $salidas = Salida::all();
-        return view('plantillas.create', compact('salidas'));
+        return view('internal.create');
     }
 
     /**
@@ -40,17 +38,23 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:150|unique:messages,title',
+            'title' => 'required|max:150',
             'information' => 'required',
-            'salida' => 'required',
+            'nombre' => 'required',
+         
         ]);
 
+
+
         try {
-            Message::create([
+            Internal::create([
                 'title' => request('title'),
                 'message' => request('information'),
                 'user_id' => Auth::user()->id,
-                'salida_id' => request('salida'),
+                'name' => request('nombre'),
+                'nota'=> request('nota')? request('nota') :'',
+                'email'=> request('email')? request('email') :'',
+
 
             ]);
 
@@ -80,9 +84,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $plantilla = Message::findOrFail($id);
-        $salidas = Salida::all();
-        return view('plantillas.edit', compact('plantilla', 'salidas'));
+        
+        $plantilla = Internal::findOrFail($id);
+
+        return view('internal.edit', compact('plantilla'));
     }
 
     /**
@@ -94,19 +99,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+       
         $request->validate([
             'title' => 'required|max:150',
             'information' => 'required',
-            'salida' => 'required',
+            'nombre' => 'required',
+         
         ]);
 
 
+
+
         try {
-            Message::findOrFail($id)->update([
+            Internal::findOrFail($id)->update([
                 'title' => request('title'),
                 'message' => request('information'),
                 'user_id' => Auth::user()->id,
-                'salida_id' => request('salida'),
+                'name' => request('nombre'),
+                'nota'=> request('nota')? request('nota') :'',
+                'email'=> request('email')? request('email') :'',
+
 
             ]);
 
@@ -125,19 +138,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        try {
-
-     
-            Message::destroy($id);
-           
-
-
-
-            return back()->with('success', 'Registro eliminado');
-        } catch (QueryException $e) {
-
-
-            return back()->with('error', 'Error al borrar el registro - ' . $e->getMessage());
-        }
+        //
     }
 }

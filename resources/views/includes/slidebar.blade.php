@@ -65,6 +65,12 @@
                     <p>Plantillas</p>
                 </a>
             </li>
+            <li class="nav-item {{ $activePage == 'internal' ? 'active' : '' }}">
+                <a href="{{ route('internal.index') }}">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>Contacto interno</p>
+                </a>
+            </li>
 
 
 
