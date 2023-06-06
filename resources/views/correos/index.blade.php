@@ -2,14 +2,14 @@
 'class' => '',
 'folderActive' => '',
 'elementActive' => 'dashboard',
-'title'=>'Contacto Interno',
+'title'=>'Contactos',
 'navbarClass'=>'navbar-transparent',
-'activePage'=>'internal',
+'activePage'=>'contactos',
 ])
 
 @section('content')
 @include('includes.spinner')
-<livewire:admin.index-internal />
+<livewire:index-correos />
 
 @endsection
 @include('includes.alert-error')

@@ -15,6 +15,10 @@
      <!--     Fonts and icons google     -->
      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+       <!-- MDB -->
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+
    
     <!-- CSS Files -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -29,7 +33,7 @@
 <body class="{{ $class }}">
 
 
-    @if (Route::is('dashboard','dashboard.*','post.*','internal.*'))
+    @if (Route::is('dashboard','dashboard.*','post.*','internal.*','correo.*'))
     @include('layouts.page_templates.admin')
 
     @elseif(Route::is('login','register','password.email','password.request','password.reset'))
@@ -90,6 +94,10 @@
     <script src="{{ asset('/demo/demo.js') }}"></script>
     <!-- Sharrre libray -->
     <script src="{{ asset('/demo/jquery.sharrre.js') }}"></script>
+
+     <!-- MDB -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 

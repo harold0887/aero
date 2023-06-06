@@ -8,7 +8,7 @@
 ])
 
 @section('content')
-
+@include('includes.spinner')
 <livewire:admin.index-posts />
 
 @endsection

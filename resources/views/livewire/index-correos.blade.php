@@ -1,17 +1,16 @@
-
 <div class="content">
     <div class="container-fluid mt--6  ">
         <div class="row m-0">
             <div class="col-12 border-bottom ">
-                <h4 class="m-0  text-center">Plantillas contacto interno</h4>
+                <h4 class="m-0  text-center">Correos</h4>
             </div>
 
             <div class="col-12 ">
                 <div class="row  justify-content-between">
                     <div class="col-12 col-md-auto mt-2 align-self-center">
-                        <a class="btn  btn-block  btn-outline-primary " href="{{ route('internal.create') }}">
+                        <a class="btn  btn-block  btn-outline-primary " href="{{ route('correo.create') }}">
                             <i class="fa-solid fa-plus"></i>
-                            <span>Agregar Plantilla</span>
+                            <span>Agregar correo</span>
                         </a>
                     </div>
                     <div class="col-12 col-md-3  mt-2  align-self-center">
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-12   col-md-5 mt-2 align-self-center">
                         <div class="input-group no-border">
-                            <input type="text" class="form-control" placeholder="Buscar por título..." wire:model="search">
+                            <input type="text" class="form-control" placeholder="Buscar por área, email o comentario..." wire:model="search">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <i class="nc-icon nc-zoom-split"></i>
@@ -39,7 +38,7 @@
             </div>
         </div>
         <div class="row ">
-            @if (isset($posts) && $posts->count() > 0)
+            @if (isset($correos) && $correos->count() > 0)
             <div class="col ">
                 <div class="card">
 
@@ -50,8 +49,8 @@
 
 
 
-                                    <th scope="col" style="cursor:pointer" wire:click="setSort('title')">Título
-                                        @if($sortField=='title')
+                                    <th scope="col" style="cursor:pointer" wire:click="setSort('email')">Email
+                                        @if($sortField=='email')
                                         @if($sortDirection=='asc')
                                         <i class="fa-solid fa-arrow-down-a-z"></i>
                                         @else
@@ -60,7 +59,28 @@
                                         @else
                                         <i class="fa-solid fa-sort mr-1"></i>
                                         @endif
-
+                                    </th>
+                                    <th scope="col" style="cursor:pointer" wire:click="setSort('area')">Area
+                                        @if($sortField=='area')
+                                        @if($sortDirection=='asc')
+                                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                                        @else
+                                        <i class="fa-solid fa-arrow-up-z-a"></i>
+                                        @endif
+                                        @else
+                                        <i class="fa-solid fa-sort mr-1"></i>
+                                        @endif
+                                    </th>
+                                    <th scope="col" style="cursor:pointer" wire:click="setSort('comentario')">Comentario
+                                        @if($sortField=='comentario')
+                                        @if($sortDirection=='asc')
+                                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                                        @else
+                                        <i class="fa-solid fa-arrow-up-z-a"></i>
+                                        @endif
+                                        @else
+                                        <i class="fa-solid fa-sort mr-1"></i>
+                                        @endif
                                     </th>
 
 
@@ -70,11 +90,13 @@
                             </thead>
 
                             <tbody>
-                                @foreach($posts as $post)
+                                @foreach($correos as $correo)
                                 <tr>
 
 
-                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $correo->email }}</td>
+                                    <td>{{ $correo->area }}</td>
+                                    <td>{{ $correo->comentario }}</td>
 
 
 
@@ -82,11 +104,11 @@
                                     <td class="text-center">
                                         <div class="btn-group">
 
-                                            <a href="{{ route('internal.edit',$post->id) }}" class="btn btn-info btn-link btn-icon btn-sm edit "><i class="material-icons">edit</i></a>
+                                            <a href="{{ route('correo.edit',$correo->id) }}" class="btn btn-info btn-link btn-icon btn-sm edit "><i class="material-icons">edit</i></a>
 
-                                            <form method="post" action="{{ route('internal.destroy', $post->id) }} ">
-                                                <input type="text" hidden  value="{{$post->title}}">
-                                                <button class=" btn btn-danger btn-link btn-icon btn-sm remove show-alert-delete-internal">
+                                            <form method="post" action="{{ route('correo.destroy', $correo->id) }} ">
+                                                <input type="text" hidden value="{{$correo->email}}">
+                                                <button class=" btn btn-danger btn-link btn-icon btn-sm remove show-alert-delete-email">
                                                     @csrf
                                                     @method('DELETE')
                                                     <i class="material-icons ">close</i>
@@ -101,7 +123,7 @@
                             </tbody>
                         </table>
                         <div class="col-12 d-flex justify-content-center">
-                            {{ $posts->links() }}
+                            {{ $correos->links() }}
                         </div>
                     </div>
                 </div>

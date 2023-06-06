@@ -67,8 +67,14 @@
             </li>
             <li class="nav-item {{ $activePage == 'internal' ? 'active' : '' }}">
                 <a href="{{ route('internal.index') }}">
-                    <i class="nc-icon nc-book-bookmark"></i>
+                    <i class="nc-icon nc-single-copy-04"></i>
                     <p>Contacto interno</p>
+                </a>
+            </li>
+            <li class="nav-item {{ $activePage == 'contactos' ? 'active' : '' }}">
+                <a href="{{ route('correo.index') }}">
+                    <i class="nc-icon nc-chat-33"></i>
+                    <p>Contactos</p>
                 </a>
             </li>
 

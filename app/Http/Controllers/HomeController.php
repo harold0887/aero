@@ -21,6 +21,9 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
-
+    public function contactos()
+    {
+        return view('contactos');
+    }
  
 }

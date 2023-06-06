@@ -22,12 +22,17 @@
                 @role('administrador')
                 <li class="nav-item  {{ $activePage == 'home' ? 'active':''}} ">
                     <a href="{{route('home')}}" class="nav-link ">
-                        <i class="nc-icon nc-mobile"></i>Cliente
+                        <i class="nc-icon nc-single-02"></i>Cliente
                     </a>
                 </li>
                 <li class="nav-item  {{ $activePage == 'internal' ? 'active':''}} ">
                     <a href="{{route('internal')}}" class="nav-link ">
-                        <i class="nc-icon nc-mobile"></i>Contacto interno
+                        <i class="nc-icon nc-spaceship"></i>Contacto interno
+                    </a>
+                </li>
+                <li class="nav-item  {{ $activePage == 'contactos' ? 'active':''}} ">
+                    <a href="{{route('contactos')}}" class="nav-link ">
+                        <i class="nc-icon nc-badge"></i>Directorio
                     </a>
                 </li>
                 <li class="nav-item {{ $activePage == 'dahboard' ? 'active':''}}">

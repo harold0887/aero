@@ -50,7 +50,7 @@
     </div>
 </div>
 @endsection
-@include('includes.alerts')
+@include('includes.alert-error')
 @push('scripts')
 <script>
     $(document).ready(function() {

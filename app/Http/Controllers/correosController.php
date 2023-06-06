@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Internal;
+use App\Correo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
-class InternalController extends Controller
+class correosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class InternalController extends Controller
      */
     public function index()
     {
-        return view('internal.index');
+        return view('correos.index');
     }
 
     /**
@@ -26,7 +25,7 @@ class InternalController extends Controller
      */
     public function create()
     {
-        return view('internal.create');
+        return view('correos.create');
     }
 
     /**
@@ -38,24 +37,16 @@ class InternalController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:150',
-            'information' => 'required',
-            'nombre' => 'required',
-
+            'email' => 'required|email|unique:correos,email',
+            'comment' => 'required',
+            'area' => 'required',
         ]);
 
-
-
         try {
-            Internal::create([
-                'title' => request('title'),
-                'message' => request('information'),
-                'user_id' => Auth::user()->id,
-                'name' => request('nombre'),
-                'nota' => request('nota') ? request('nota') : '',
-                'email' => request('email') ? request('email') : '',
-
-
+            Correo::create([
+                'email' => request('email'),
+                'area' => request('area'),
+                'comentario' => request('comment'),
             ]);
 
 
@@ -84,10 +75,8 @@ class InternalController extends Controller
      */
     public function edit($id)
     {
-
-        $plantilla = Internal::findOrFail($id);
-
-        return view('internal.edit', compact('plantilla'));
+        $correo = Correo::findOrFail($id);
+        return view('correos.edit', compact('correo'));
     }
 
     /**
@@ -99,28 +88,17 @@ class InternalController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $request->validate([
-            'title' => 'required|max:150',
-            'information' => 'required',
-            'nombre' => 'required',
-
+            'email' => 'required|email',
+            'comment' => 'required',
+            'area' => 'required',
         ]);
 
-
-
-
         try {
-            Internal::findOrFail($id)->update([
-                'title' => request('title'),
-                'message' => request('information'),
-                'user_id' => Auth::user()->id,
-                'name' => request('nombre'),
-                'nota' => request('nota') ? request('nota') : '',
-                'email' => request('email') ? request('email') : '',
-
-
+            Correo::findOrFail($id)->update([
+                'email' => request('email'),
+                'area' => request('area'),
+                'comentario' => request('comment'),
             ]);
 
 
@@ -138,11 +116,16 @@ class InternalController extends Controller
      */
     public function destroy($id)
     {
+       
         try {
 
-            Internal::destroy($id);
+    
+            Correo::destroy($id);
+           
 
-            return back()->with('success', 'Registro eliminado correctamente');
+
+
+            return back()->with('success', 'Registro eliminado');
         } catch (QueryException $e) {
 
 

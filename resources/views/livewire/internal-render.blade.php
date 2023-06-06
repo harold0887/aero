@@ -35,11 +35,11 @@
 
 
 
-    <div class="row">
+    <div class="row mt-5">
 
 
         @if(isset($message) && $message !=null)
-        <div class="col-8 mt-5 border rounded py-2 bg-white ">
+        <div class="col-8  border rounded py-2 bg-white ">
             <p>Buen día, {{$message->name}}</p>
 
 
@@ -51,6 +51,18 @@
             <br>
 
           
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-12"><i>{{$message->email}}</i></div>
+                <hr>
+                <div class="col-12 small">
+                    @if($message->nota)
+                    Nota: {{$message->nota}}
+                    @endif
+
+                </div>
+            </div>
         </div>
 
         @endif
