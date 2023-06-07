@@ -62,11 +62,11 @@
 
 
 
-    <div class="row">
+    <div class="row mt-5 ">
 
 
         @if(isset($message) && $message !=null)
-        <div class="col-8 mt-5 border rounded py-2 bg-white ">
+        <div class="col-8 border rounded py-2 bg-white ">
             @if($genero=='01')
             <p>Estimado Sr. {{$lastName}},</p>
             @elseif($genero=='02')
@@ -88,6 +88,9 @@
             @endif
             <br>
             Cordialmente,
+        </div>
+        <div class="col-4">
+            <a href="{{ route('post.edit',$message->id) }}" class="btn btn-info btn-link btn-icon btn-sm edit " target="_blank"><i class="material-icons">edit</i></a>
         </div>
 
         @endif

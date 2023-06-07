@@ -16,9 +16,9 @@
             <small class=" text-danger"> {{ $message }} </small>
             @enderror
         </div>
-       
-       
-    
+
+
+
     </div>
 
     <button type="submit" class="btn btn-primary" wire:click="submit" wire:loading.attr="disabled" wire:target="submit">
@@ -50,10 +50,14 @@
 
             <br>
 
-          
+
         </div>
         <div class="col-4">
             <div class="row">
+                <div class="col-12">
+                    <a href="{{ route('internal.edit',$message->id) }}" class="btn btn-info btn-link btn-icon btn-sm edit "><i class="material-icons">edit</i></a>
+
+                </div>
                 <div class="col-12"><i>{{$message->email}}</i></div>
                 <hr>
                 <div class="col-12 small">
